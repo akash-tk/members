@@ -92,6 +92,7 @@ func (app *Application) Update(dryRun bool) error {
 		}()
 	}
 
+	wg.Wait()
 	return nil
 }
 
