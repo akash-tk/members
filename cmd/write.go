@@ -9,8 +9,8 @@ import (
 )
 
 var updateCmd = &cobra.Command{
-	Use:   "update",
-	Short: "it will update `members.yaml` by fetching the server information",
+	Use:   "write",
+	Short: "it will write `members.yaml` by fetching the server information",
 	Long:  "It fetches members from the server and overwrite `members.yaml`",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		cfg := config.FromViper()
