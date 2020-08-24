@@ -4,6 +4,7 @@ import (
 	"context"
 	config "github.com/golang-friends/members/internal/config"
 	"github.com/google/go-github/v32/github"
+	"log"
 	"net/http"
 )
 
@@ -44,6 +45,23 @@ func (app *Application) GetConfigFromGitHub() config.Config {
 	}
 
 	return config
+}
+
+func (app *Application) Update(dryRun bool) error {
+	for _, admin := range app.Config.Admins {
+		if dryRun {
+			log.Printf("Adding %v as admin", admin)
+			continue
+		}
+	}
+
+	for _, member := range app.Config.Members {
+		if dryRun {
+			log.Printf("Adding %v as member", member)
+			continue
+		}
+	}
+	return nil
 }
 
 func NewApplication(cfg *config.Config, client *http.Client) *Application {

@@ -36,4 +36,5 @@ func init() {
 	}
 
 	rootCmd.AddCommand(updateCmd)
+	rootCmd.AddCommand(writeCmd)
 }
