@@ -1,6 +1,7 @@
 # members
 
 ![Send invitations](https://github.com/golang-friends/members/workflows/Send%20invitations/badge.svg)
+[![codecov](https://codecov.io/gh/golang-friends/members/branch/master/graph/badge.svg)](https://codecov.io/gh/golang-friends/members)
 
 This repository contains the members of this organization. If you want to join the organization, please send a PR by adding your name.
 
