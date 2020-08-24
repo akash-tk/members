@@ -2,6 +2,9 @@ name: Pull Request Check
 
 on:
   pull_request:
+  push:
+    branchs:
+      - master
 
 jobs:
   test:
