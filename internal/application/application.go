@@ -6,6 +6,7 @@ import (
 	"github.com/google/go-github/v32/github"
 	"log"
 	"net/http"
+	"sync"
 )
 
 type Application struct {
@@ -48,11 +49,27 @@ func (app *Application) GetConfigFromGitHub() config.Config {
 }
 
 func (app *Application) Update(dryRun bool) error {
+	cli := github.NewClient(app.Client)
+	var wg sync.WaitGroup
+
 	for _, admin := range app.Config.Admins {
 		if dryRun {
 			log.Printf("Adding %v as admin", admin)
 			continue
 		}
+
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			log.Printf("Adding %v as admin", admin)
+			_, _, err := cli.Organizations.EditOrgMembership(
+				context.Background(), admin, app.Config.Orgname, &github.Membership{
+					Role: github.String("admin"),
+				})
+			if err != nil {
+				log.Printf("EditOrgMembership (admin) has failed for %v: %v", admin, err)
+			}
+		}()
 	}
 
 	for _, member := range app.Config.Members {
@@ -60,7 +77,21 @@ func (app *Application) Update(dryRun bool) error {
 			log.Printf("Adding %v as member", member)
 			continue
 		}
+
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			log.Printf("Adding %v as member", member)
+			_, _, err := cli.Organizations.EditOrgMembership(
+				context.Background(), member, app.Config.Orgname, &github.Membership{
+					Role: github.String("member"),
+				})
+			if err != nil {
+				log.Printf("EditOrgMembership (member) has failed for %v: %v", member, err)
+			}
+		}()
 	}
+
 	return nil
 }
 
