@@ -59,16 +59,11 @@ func (app *Application) Update(dryRun bool) error {
 		}
 
 		wg.Add(1)
+		// needs to capture
+		admin := admin
 		go func() {
 			defer wg.Done()
-			log.Printf("Adding %v as admin", admin)
-			_, _, err := cli.Organizations.EditOrgMembership(
-				context.Background(), admin, app.Config.Orgname, &github.Membership{
-					Role: github.String("admin"),
-				})
-			if err != nil {
-				log.Printf("EditOrgMembership (admin) has failed for %v: %v", admin, err)
-			}
+			editMembership(cli, app.Config.Orgname, admin, "admin")
 		}()
 	}
 
@@ -79,21 +74,27 @@ func (app *Application) Update(dryRun bool) error {
 		}
 
 		wg.Add(1)
+		// needs to capture
+		member := member
 		go func() {
 			defer wg.Done()
-			log.Printf("Adding %v as member", member)
-			_, _, err := cli.Organizations.EditOrgMembership(
-				context.Background(), member, app.Config.Orgname, &github.Membership{
-					Role: github.String("member"),
-				})
-			if err != nil {
-				log.Printf("EditOrgMembership (member) has failed for %v: %v", member, err)
-			}
+			editMembership(cli, app.Config.Orgname, member, "member")
 		}()
 	}
 
 	wg.Wait()
 	return nil
+}
+
+func editMembership(cli *github.Client, orgname, username, role string) {
+	log.Printf("Adding %v as %v", username, role)
+	_, _, err := cli.Organizations.EditOrgMembership(
+		context.Background(), username, orgname, &github.Membership{
+			Role: github.String(role),
+		})
+	if err != nil {
+		log.Printf("EditOrgMembership (%v) has failed for %v: %v", role, username, err)
+	}
 }
 
 func NewApplication(cfg *config.Config, client *http.Client) *Application {
