@@ -12,6 +12,7 @@ var rootCmd = &cobra.Command{
 }
 var gitHubOAuthToken string
 
+// Execute is the main entry function for a binary.
 func Execute() error {
 	return rootCmd.Execute()
 }
@@ -25,6 +26,7 @@ func init() {
 		"",
 		"GitHub OAuth Token (required)")
 
+	// viper will read members.yaml
 	viper.SetConfigName("members")
 	viper.SetConfigType("yaml")
 	// PWD

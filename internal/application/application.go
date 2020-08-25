@@ -10,11 +10,13 @@ import (
 	"github.com/google/go-github/v32/github"
 )
 
+// Application is the main entry struct for the program.
 type Application struct {
 	Config *config.Config
 	Client *http.Client
 }
 
+// GetConfigFromGitHub fetches members and admins based on the GitHub server information.
 func (app *Application) GetConfigFromGitHub() config.Config {
 	client := github.NewClient(app.Client)
 
@@ -37,6 +39,7 @@ func (app *Application) GetConfigFromGitHub() config.Config {
 	}
 
 	var config config.Config
+	config.Orgname = app.Config.Orgname
 
 	for _, admin := range admins {
 		config.Admins = append(config.Admins, admin.GetLogin())
@@ -49,6 +52,8 @@ func (app *Application) GetConfigFromGitHub() config.Config {
 	return config
 }
 
+// Update will actually invite users unless dryRun is true.
+// In case of dryRun, it will just print without calling the server.
 func (app *Application) Update(dryRun bool) error {
 	cli := github.NewClient(app.Client)
 	var wg sync.WaitGroup
@@ -98,6 +103,7 @@ func editMembership(cli *github.Client, orgname, username, role string) {
 	}
 }
 
+// NewApplication is a factory function that returns Application with the dependency.
 func NewApplication(cfg *config.Config, client *http.Client) *Application {
 	return &Application{Config: cfg, Client: client}
 }
