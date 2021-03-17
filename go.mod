@@ -1,6 +1,6 @@
 module github.com/golang-friends/members
 
-go 1.15
+go 1.16
 
 require (
 	github.com/google/go-github/v32 v32.1.0
