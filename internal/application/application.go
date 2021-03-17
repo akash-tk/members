@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"net/http"
+	"sort"
 	"sync"
 
 	config "github.com/golang-friends/members/internal/config"
@@ -48,6 +49,9 @@ func (app *Application) GetConfigFromGitHub() config.Config {
 	for _, member := range members {
 		config.Members = append(config.Members, member.GetLogin())
 	}
+
+	sort.Strings(config.Admins)
+	sort.Strings(config.Members)
 
 	return config
 }

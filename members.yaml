@@ -5,14 +5,13 @@ admins:
   - sagarc03
   - schairez
 members:
-  - amalshaji
-  - BaileyJM02
   - DLzer
-  - itzmanish
   - JordanKnott
-  - quartermeat
-  - saadismail
-  - redjoker011
   - TunedMystic
+  - amalshaji
   - dileep8014
+  - itzmanish
+  - quartermeat
+  - redjoker011
+  - saadismail
 org: golang-friends
