@@ -2,7 +2,7 @@ name: Send invitations
 
 on:
   push:
-    branches: [master]
+    branches: [main]
 
 jobs:
   build:
