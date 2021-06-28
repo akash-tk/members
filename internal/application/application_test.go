@@ -1,13 +1,14 @@
 package application
 
 import (
+	"testing"
+
 	"github.com/golang-friends/members/internal/application/mock_application"
 	"github.com/golang-friends/members/internal/config"
 	"github.com/golang-friends/members/internal/enums"
 	"github.com/golang/mock/gomock"
-	"github.com/google/go-github/v32/github"
+	"github.com/google/go-github/v35/github"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestApplication_UpdateV2(t *testing.T) {
@@ -55,8 +56,10 @@ func TestApplication_GetConfigFromGitHub(t *testing.T) {
 	mockGitHubService.
 		EXPECT().
 		ListMembersByRole(gomock.Eq(enums.RoleAdmin)).
-		Return([]*github.User{getGitHubUser("admin1"),
-			getGitHubUser("admin2")}, nil)
+		Return([]*github.User{
+			getGitHubUser("admin1"),
+			getGitHubUser("admin2"),
+		}, nil)
 	mockGitHubService.
 		EXPECT().
 		ListMembersByRole(gomock.Eq(enums.RoleMember)).

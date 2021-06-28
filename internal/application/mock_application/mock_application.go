@@ -9,7 +9,7 @@ import (
 
 	enums "github.com/golang-friends/members/internal/enums"
 	gomock "github.com/golang/mock/gomock"
-	github "github.com/google/go-github/v32/github"
+	github "github.com/google/go-github/v35/github"
 )
 
 // MockGitHubService is a mock of GitHubService interface.

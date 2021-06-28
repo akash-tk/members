@@ -2,11 +2,12 @@ package githubservice
 
 import (
 	"context"
+	"net/http"
+
 	"github.com/golang-friends/members/internal/application"
 	"github.com/golang-friends/members/internal/enums"
-	"github.com/google/go-github/v32/github"
+	"github.com/google/go-github/v35/github"
 	log "github.com/sirupsen/logrus"
-	"net/http"
 )
 
 type GitHubService struct {

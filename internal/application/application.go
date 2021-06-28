@@ -1,12 +1,13 @@
 package application
 
 import (
+	"sort"
+
 	"github.com/golang-friends/members/internal/config"
 	"github.com/golang-friends/members/internal/enums"
-	"github.com/google/go-github/v32/github"
+	"github.com/google/go-github/v35/github"
 	log "github.com/sirupsen/logrus"
 	"k8s.io/apimachinery/pkg/util/sets"
-	"sort"
 )
 
 type GitHubService interface {
