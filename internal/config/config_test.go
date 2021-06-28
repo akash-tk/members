@@ -23,6 +23,6 @@ func init() {
 
 func TestFromViper(t *testing.T) {
 	cfg := FromViper()
-	assert.True(t, sort.StringsAreSorted(cfg.Admins))
-	assert.True(t, sort.StringsAreSorted(cfg.Members))
+	assert.True(t, sort.StringsAreSorted(cfg.Admins), "please sort the names in admin")
+	assert.True(t, sort.StringsAreSorted(cfg.Members), "please sort the names in members")
 }
