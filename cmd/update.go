@@ -10,6 +10,7 @@ import (
 
 var dryRun bool
 
+// updateCmd will remove/invite members based on members.yaml
 var updateCmd = &cobra.Command{
 	Use:     "update",
 	Short:   "Make REST API calls based on members.yaml",

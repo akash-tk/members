@@ -10,6 +10,8 @@ import (
 	"k8s.io/apimachinery/pkg/util/sets"
 )
 
+// GitHubService is a dependency used by Application.
+// It wraps the implementation so that it's easier to test.
 type GitHubService interface {
 	RemoveMembers(members []string) error
 	AddAdmins(admins []string) error
