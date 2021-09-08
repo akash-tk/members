@@ -5,37 +5,50 @@
 package mock_application
 
 import (
-	reflect "reflect"
-
 	enums "github.com/golang-friends/members/internal/enums"
 	gomock "github.com/golang/mock/gomock"
 	github "github.com/google/go-github/v35/github"
+	reflect "reflect"
 )
 
-// MockGitHubService is a mock of GitHubService interface.
+// MockGitHubService is a mock of GitHubService interface
 type MockGitHubService struct {
 	ctrl     *gomock.Controller
 	recorder *MockGitHubServiceMockRecorder
 }
 
-// MockGitHubServiceMockRecorder is the mock recorder for MockGitHubService.
+// MockGitHubServiceMockRecorder is the mock recorder for MockGitHubService
 type MockGitHubServiceMockRecorder struct {
 	mock *MockGitHubService
 }
 
-// NewMockGitHubService creates a new mock instance.
+// NewMockGitHubService creates a new mock instance
 func NewMockGitHubService(ctrl *gomock.Controller) *MockGitHubService {
 	mock := &MockGitHubService{ctrl: ctrl}
 	mock.recorder = &MockGitHubServiceMockRecorder{mock}
 	return mock
 }
 
-// EXPECT returns an object that allows the caller to indicate expected use.
+// EXPECT returns an object that allows the caller to indicate expected use
 func (m *MockGitHubService) EXPECT() *MockGitHubServiceMockRecorder {
 	return m.recorder
 }
 
-// AddAdmins mocks base method.
+// RemoveMembers mocks base method
+func (m *MockGitHubService) RemoveMembers(members []string) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "RemoveMembers", members)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// RemoveMembers indicates an expected call of RemoveMembers
+func (mr *MockGitHubServiceMockRecorder) RemoveMembers(members interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveMembers", reflect.TypeOf((*MockGitHubService)(nil).RemoveMembers), members)
+}
+
+// AddAdmins mocks base method
 func (m *MockGitHubService) AddAdmins(admins []string) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "AddAdmins", admins)
@@ -43,13 +56,13 @@ func (m *MockGitHubService) AddAdmins(admins []string) error {
 	return ret0
 }
 
-// AddAdmins indicates an expected call of AddAdmins.
+// AddAdmins indicates an expected call of AddAdmins
 func (mr *MockGitHubServiceMockRecorder) AddAdmins(admins interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddAdmins", reflect.TypeOf((*MockGitHubService)(nil).AddAdmins), admins)
 }
 
-// AddMembers mocks base method.
+// AddMembers mocks base method
 func (m *MockGitHubService) AddMembers(members []string) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "AddMembers", members)
@@ -57,13 +70,13 @@ func (m *MockGitHubService) AddMembers(members []string) error {
 	return ret0
 }
 
-// AddMembers indicates an expected call of AddMembers.
+// AddMembers indicates an expected call of AddMembers
 func (mr *MockGitHubServiceMockRecorder) AddMembers(members interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddMembers", reflect.TypeOf((*MockGitHubService)(nil).AddMembers), members)
 }
 
-// ListMembersByRole mocks base method.
+// ListMembersByRole mocks base method
 func (m *MockGitHubService) ListMembersByRole(role enums.Role) ([]*github.User, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "ListMembersByRole", role)
@@ -72,22 +85,8 @@ func (m *MockGitHubService) ListMembersByRole(role enums.Role) ([]*github.User, 
 	return ret0, ret1
 }
 
-// ListMembersByRole indicates an expected call of ListMembersByRole.
+// ListMembersByRole indicates an expected call of ListMembersByRole
 func (mr *MockGitHubServiceMockRecorder) ListMembersByRole(role interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListMembersByRole", reflect.TypeOf((*MockGitHubService)(nil).ListMembersByRole), role)
-}
-
-// RemoveMembers mocks base method.
-func (m *MockGitHubService) RemoveMembers(members []string) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "RemoveMembers", members)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// RemoveMembers indicates an expected call of RemoveMembers.
-func (mr *MockGitHubServiceMockRecorder) RemoveMembers(members interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveMembers", reflect.TypeOf((*MockGitHubService)(nil).RemoveMembers), members)
 }

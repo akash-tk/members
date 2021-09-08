@@ -41,7 +41,7 @@ func TestApplication_UpdateV2(t *testing.T) {
 			RemoveMembers(gomock.Eq([]string{"kkweon"})).
 			Return(nil)
 
-		err := app.UpdateV2(oldConfig, false)
+		err := app.updateInternal(oldConfig, false)
 		assert.NoError(t, err)
 	}
 }

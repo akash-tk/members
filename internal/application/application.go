@@ -58,11 +58,11 @@ func (app *Application) GetConfigFromGitHub() config.Config {
 // In case of dryRun, it will just print without calling the server.
 func (app *Application) Update(dryRun bool) error {
 	oldConfig := app.GetConfigFromGitHub()
-	return app.UpdateV2(oldConfig, dryRun)
+	return app.updateInternal(oldConfig, dryRun)
 }
 
-// UpdateV2 is the new version that supports remove feature.
-func (app Application) UpdateV2(oldConfig config.Config, dryRun bool) error {
+// updateInternal is the new version that supports remove feature.
+func (app Application) updateInternal(oldConfig config.Config, dryRun bool) error {
 	oldAllMembers :=
 		sets.NewString(append(oldConfig.Members, oldConfig.Admins...)...)
 	newAllMembers :=
