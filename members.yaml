@@ -1,21 +1,27 @@
-admins:
-- JayantGoel001
-- TunedMystic
-- incidrthreat
-- jbampton
-- kkweon
-- noman2002
-- ps-19
-- schairez
-
-# Put your GitHub LDAP.
-members:
-- AvidCoder101
-- TunedMystic
-- incidrthreat
-- jbampton
-- kkweon
-- noman2002
-- ps-19
-- schairez
 org: golang-friends
+
+admins:
+  - incidrthreat
+  - karansinghgit
+  - kkweon
+  - sagarc03
+  - schairez
+
+members:
+  - BaseMax
+  - DLzer
+  - JayantGoel001
+  - JordanKnott
+  - TunedMystic
+  - amalshaji
+  - ayushrana182
+  - dileep8014
+  - itzmanish
+  - jbampton
+  - noman2002
+  - ps-19
+  - quartermeat
+  - redjoker011
+  - saadismail
+  - zxcv2008a
+  - AvidCoder101
