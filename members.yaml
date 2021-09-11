@@ -1,26 +1,19 @@
-org: golang-friends
-
 admins:
-  - karansinghgit
-  - kkweon
-  - sagarc03
-  - schairez
-
+- JayantGoel001
+- TunedMystic
+- incidrthreat
+- jbampton
+- kkweon
+- noman2002
+- ps-19
+- schairez
 members:
-  - BaseMax
-  - DLzer
-  - JayantGoel001
-  - JordanKnott
-  - TunedMystic
-  - amalshaji
-  - ayushrana182
-  - dileep8014
-  - itzmanish
-  - jbampton
-  - noman2002
-  - ps-19
-  - quartermeat
-  - redjoker011
-  - saadismail
-  - zxcv2008a
-  - AvidCoder
+- JayantGoel001
+- TunedMystic
+- incidrthreat
+- jbampton
+- kkweon
+- noman2002
+- ps-19
+- schairez
+org: golang-friends
