@@ -11,6 +11,7 @@ var rootCmd = &cobra.Command{
 	Use:   "members",
 	Short: "Manages GitHub org members",
 }
+
 var gitHubOAuthToken string
 
 // Execute is the main entry function for a binary.

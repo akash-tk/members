@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/golang-friends/members/internal"
+	"github.com/golang-friends/members/internal/githubservice"
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +15,7 @@ var updateCmd = &cobra.Command{
 	Long:    "",
 	Example: "members update --dry-run",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		return internal.ProvideApplication().Update(dryRun)
+		return internal.ProvideApplication(githubservice.GitHubOAuthToken(gitHubOAuthToken)).Update(dryRun)
 	},
 }
 

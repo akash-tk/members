@@ -2,10 +2,10 @@ package githubservice
 
 import (
 	"context"
-	"github.com/pkg/errors"
-	"net/http"
-
 	"github.com/golang-friends/members/internal/application"
+	"github.com/golang-friends/members/internal/config"
+	"github.com/pkg/errors"
+	"golang.org/x/oauth2"
 
 	"github.com/golang-friends/members/internal/enums"
 	"github.com/google/go-github/v35/github"
@@ -90,11 +90,18 @@ func (g GitHubService) editOrgMembership(member string, role enums.Role) error {
 	return err
 }
 
+type GitHubOAuthToken string
+
 // New is the factory for GitHubService.
-func New(orgName string, httpClient *http.Client) *GitHubService {
-	client := github.NewClient(httpClient)
+func New(cfg *config.Config, githubOAuthToken GitHubOAuthToken) *GitHubService {
+	ctx := context.Background()
+	ts := oauth2.StaticTokenSource(
+		&oauth2.Token{AccessToken: string(githubOAuthToken)},
+	)
+	tc := oauth2.NewClient(ctx, ts)
+	client := github.NewClient(tc)
 	return &GitHubService{
 		client:  client,
-		orgName: orgName,
+		orgName: cfg.Orgname,
 	}
 }
