@@ -2,6 +2,7 @@ package githubservice
 
 import (
 	"context"
+	"github.com/pkg/errors"
 	"net/http"
 
 	"github.com/golang-friends/members/internal/application"
@@ -31,38 +32,53 @@ func (g GitHubService) ListMembersByRole(role enums.Role) ([]*github.User, error
 
 // RemoveMembers removes members from orgName.
 func (g GitHubService) RemoveMembers(members []string) error {
+	var errMerged error
 	for _, member := range members {
 		log.WithField("member", member).Info("removing a member")
 		_, err := g.client.Organizations.RemoveMember(context.Background(), g.orgName, member)
 		if err != nil {
-			return err
+			if errMerged == nil {
+				errMerged = err
+			} else {
+				errMerged = errors.Wrap(err, errMerged.Error())
+			}
 		}
 	}
-	return nil
+	return errMerged
 }
 
 // AddAdmins adds members as "admin" role.
 func (g GitHubService) AddAdmins(admins []string) error {
+	var errMerged error
 	for _, admin := range admins {
 		log.WithField("admin", admin).Info("adding an admin")
 		err := g.editOrgMembership(admin, enums.RoleAdmin)
 		if err != nil {
-			return err
+			if errMerged == nil {
+				errMerged = err
+			} else {
+				errMerged = errors.Wrap(err, errMerged.Error())
+			}
 		}
 	}
-	return nil
+	return errMerged
 }
 
 // AddMembers adds members as "member" role.
 func (g GitHubService) AddMembers(members []string) error {
+	var errMerged error
 	for _, member := range members {
 		log.WithField("member", member).Info("adding a member")
 		err := g.editOrgMembership(member, enums.RoleMember)
 		if err != nil {
-			return err
+			if errMerged == nil {
+				errMerged = err
+			} else {
+				errMerged = errors.Wrap(err, errMerged.Error())
+			}
 		}
 	}
-	return nil
+	return errMerged
 }
 
 // editOrgMembership is the internal function used inviting members.

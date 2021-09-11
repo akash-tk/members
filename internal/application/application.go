@@ -78,7 +78,7 @@ func (app Application) updateInternal(oldConfig config.Config, dryRun bool) erro
 		} else {
 			err := app.gitHubService.RemoveMembers(shouldRemoveMembers.UnsortedList())
 			if err != nil {
-				return err
+				log.WithError(err).Error("removing members has failed at least once")
 			}
 		}
 	}
@@ -89,7 +89,7 @@ func (app Application) updateInternal(oldConfig config.Config, dryRun bool) erro
 		} else {
 			err := app.gitHubService.AddAdmins(app.cfg.Admins)
 			if err != nil {
-				return err
+				log.WithError(err).Error("adding admins has failed at least once")
 			}
 		}
 	}
@@ -102,7 +102,7 @@ func (app Application) updateInternal(oldConfig config.Config, dryRun bool) erro
 		} else {
 			err := app.gitHubService.AddMembers(app.cfg.Members)
 			if err != nil {
-				return err
+				log.WithError(err).Error("adding members has failed at least once")
 			}
 		}
 	}
