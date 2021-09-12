@@ -15,7 +15,11 @@ var updateCmd = &cobra.Command{
 	Long:    "",
 	Example: "members update --dry-run",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		return internal.ProvideApplication(githubservice.GitHubOAuthToken(gitHubOAuthToken)).Update(dryRun)
+		app, err := internal.ProvideApplication(githubservice.GitHubOAuthToken(gitHubOAuthToken))
+		if err != nil {
+			return err
+		}
+		return app.Update(dryRun)
 	},
 }
 

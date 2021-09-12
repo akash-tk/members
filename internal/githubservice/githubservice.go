@@ -93,7 +93,11 @@ func (g GitHubService) editOrgMembership(member string, role enums.Role) error {
 type GitHubOAuthToken string
 
 // New is the factory for GitHubService.
-func New(cfg *config.Config, githubOAuthToken GitHubOAuthToken) *GitHubService {
+func New(cfg *config.Config, githubOAuthToken GitHubOAuthToken) (*GitHubService, error) {
+	if githubOAuthToken == "" {
+		return nil, errors.New("GitHub OAuth Token (passed as -t) is needed")
+	}
+
 	ctx := context.Background()
 	ts := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: string(githubOAuthToken)},
@@ -103,5 +107,5 @@ func New(cfg *config.Config, githubOAuthToken GitHubOAuthToken) *GitHubService {
 	return &GitHubService{
 		client:  client,
 		orgName: cfg.Orgname,
-	}
+	}, nil
 }

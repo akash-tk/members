@@ -12,7 +12,11 @@ var writeCmd = &cobra.Command{
 	Short: "it will write `members.yaml` by fetching the server information",
 	Long:  "It fetches members from the server and overwrite `members.yaml`",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		newConfig := internal.ProvideApplication(githubservice.GitHubOAuthToken(gitHubOAuthToken)).GetConfigFromGitHub()
+		app, err := internal.ProvideApplication(githubservice.GitHubOAuthToken(gitHubOAuthToken))
+		if err != nil {
+			return err
+		}
+		newConfig := app.GetConfigFromGitHub()
 		viper.Set("admins", newConfig.Admins)
 		viper.Set("members", newConfig.Members)
 		return viper.WriteConfig()

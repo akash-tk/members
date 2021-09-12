@@ -10,7 +10,7 @@ import (
 	"github.com/google/wire"
 )
 
-func ProvideApplication(githubOauthToken githubservice.GitHubOAuthToken) *application.Application {
+func ProvideApplication(githubOauthToken githubservice.GitHubOAuthToken) (*application.Application, error) {
 	panic(wire.Build(
 		application.NewApplication,
 		config.FromViper,

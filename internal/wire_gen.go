@@ -14,9 +14,12 @@ import (
 
 // Injectors from wire.go:
 
-func ProvideApplication(githubOauthToken githubservice.GitHubOAuthToken) *application.Application {
+func ProvideApplication(githubOauthToken githubservice.GitHubOAuthToken) (*application.Application, error) {
 	configConfig := config.FromViper()
-	gitHubService := githubservice.New(configConfig, githubOauthToken)
+	gitHubService, err := githubservice.New(configConfig, githubOauthToken)
+	if err != nil {
+		return nil, err
+	}
 	applicationApplication := application.NewApplication(configConfig, gitHubService)
-	return applicationApplication
+	return applicationApplication, nil
 }
