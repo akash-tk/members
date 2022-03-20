@@ -9,6 +9,8 @@ func (r Role) String() string {
 }
 
 const (
+	// RoleMember is a regular member of this GitHub organization.
 	RoleMember Role = "member"
-	RoleAdmin  Role = "admin"
+	// RoleAdmin is an admin of this GitHub organization.
+	RoleAdmin Role = "admin"
 )

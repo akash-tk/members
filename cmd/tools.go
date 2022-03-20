@@ -5,7 +5,7 @@
 //
 // For example, install mockgen and wire as below,
 //
-// go mod tidy &&  grep _ cmd/tools.go| cut -d ' ' -f 2 | xargs go install
+// go mod tidy &&  grep _ cmd/tools.go | cut -d ' ' -f 2 | tail -n +2 | xargs go install
 package cmd
 
 import (
