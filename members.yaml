@@ -1,36 +1,27 @@
 org: golang-friends
 
 admins:
-  - incidrthreat
-  - karansinghgit
-  - kkweon
-  - sagarc03
-  - schairez
+- incidrthreat
+- kkweon
+- schairez
 
-# Add your GitHub username.
 members:
-  - heithemmoumni
-  - 3imed-jaberi
-  - AvidCoder101
-  - BaseMax
-  - DLzer
-  - JayantGoel001
-  - JordanKnott
-  - TunedMystic
-  - aashimawadhwa
-  - amalshaji
-  - ayushrana182
-  - dileep8014
-  - itzmanish
-  - jbampton
-  - noman2002
-  - ps-19
-  - quartermeat
-  - redjoker011
-  - saadismail
-  - zxcv2008a
-  - lorezi
-  - phanatagama
-  - novalramdhani
-  - thuongtruong1009
-  - ossamamehmood
+- 3imed-jaberi
+- AvidCoder101
+- BaseMax
+- DLzer
+- JayantGoel001
+- TunedMystic
+- ayushrana182
+- dileep8014
+- heithemmoumni
+- jbampton
+- lorezi
+- noman2002
+- ossamamehmood
+- phanatagama
+- ps-19
+- quartermeat
+- redjoker011
+- thuongtruong1009
+- zxcv2008a
