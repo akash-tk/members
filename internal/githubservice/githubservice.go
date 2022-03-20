@@ -2,6 +2,7 @@ package githubservice
 
 import (
 	"context"
+
 	"github.com/golang-friends/members/internal/application"
 	"github.com/golang-friends/members/internal/config"
 	"github.com/pkg/errors"
@@ -90,6 +91,7 @@ func (g GitHubService) editOrgMembership(member string, role enums.Role) error {
 	return err
 }
 
+// GitHubOAuthToken is the type for GitHub OAuth Token (org:admin access).
 type GitHubOAuthToken string
 
 // New is the factory for GitHubService.
